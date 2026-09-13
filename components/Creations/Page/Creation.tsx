@@ -9,7 +9,6 @@ import { convertToType, downloadCreation } from "@/app/api/content";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useTags } from "@/app/api/hooks/creations";
-import DOMPurify from "isomorphic-dompurify";
 import CreatorCard from "@/components/Creator/CreatorCard";
 import Rating from "@/components/Creations/Page/Rating";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -138,7 +137,7 @@ export default function Creation({ creation, collectionName }: { creation: ICont
                         {videoID && videoID.length > 0 && <div className="aspect-video mb-5">
                             <iframe src={`https://www.youtube.com/embed/${videoID}?autoplay=0&amp;rel=0&amp;origin=https://mccreations.net`} title={`Video of ${title} by ${creation.creators[0].username}`} allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" className="w-full h-full"></iframe>
                         </div>}
-                        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}>
+                        <div dangerouslySetInnerHTML={{ __html: description }}>
 
                         </div>
                         {creation.images && creation.images.length > 1 && <div className="mt- max-w-5xl">

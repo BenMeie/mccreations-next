@@ -14,7 +14,6 @@ import SubscribeButton from "@/components/ui/client_buttons/SubscribeButton";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { EditAbout, EditCustomCss, EditProfileImages, EditSocialLinks } from "./creatorEdit";
-import dompurify from "isomorphic-dompurify";
 
 interface CreatorPageProps {
     params: Promise<{ handle: string, locale: string }>
@@ -125,7 +124,7 @@ async function CreatorProfile({ handle, locale }: { handle: string, locale: stri
         return (
         <>
             <style>
-                {creator.customCSS && creator.customCSS.length > 0 ? dompurify.sanitize(creator.customCSS) : ""}
+                {creator.customCSS && creator.customCSS.length > 0 ? creator.customCSS : ""}
             </style>
             <div className="relative">
             {creator.bannerURL ? (
@@ -178,7 +177,7 @@ async function CreatorProfile({ handle, locale }: { handle: string, locale: stri
                 {creator.about && (
                     <div>
                     <h2 className="font-semibold mb-2">{t("Pages.Creator.handle.about")}</h2>
-                    <p className="text-sm whitespace-pre-line" dangerouslySetInnerHTML={{__html: dompurify.sanitize(creator.about)}}></p>
+                    <p className="text-sm whitespace-pre-line" dangerouslySetInnerHTML={{__html: creator.about}}></p>
                     <EditAbout params={{handle}} />
                     </div>
                 )}

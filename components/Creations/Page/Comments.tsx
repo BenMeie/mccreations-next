@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { Input } from '@/components/ui/input'
 import {useForm} from '@tanstack/react-form'
-import DOMPurify from 'isomorphic-dompurify'
 import { ChevronDown, ChevronDownIcon, ChevronUp, MoreHorizontalIcon, ThumbsUpIcon } from 'lucide-react'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
@@ -231,7 +230,7 @@ export function Comment({comment, setComments, comments, sort}: {
                     <div>
                         <h3 className='font-bold'>{comment.username}</h3>
                         {rating > 0 && (<Rating className='my-1' value={rating} currentRating={rating} ratings={[rating]} onRate={() => {}}/>)}
-                        <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(comment.comment)}} className={`max-w-xl mb-2 ${showMore ? '' : 'line-clamp-4'}`} ref={text}></div>
+                        <div dangerouslySetInnerHTML={{__html: comment.comment}} className={`max-w-xl mb-2 ${showMore ? '' : 'line-clamp-4'}`} ref={text}></div>
                         {canShowMore && <div className='text-sm text-muted-foreground cursor-pointer' onClick={() => setShowMore(!showMore)}>{t('Components.Creations.Page.Comments.show_more', {showMore: showMore ? 'less' : 'more'})}</div>}
                         <div className='flex flex-row gap-2'>
                             <Button variant="ghost" size="icon" className='w-8 h-8 text-muted-foreground' onClick={() => {likeComment(comment._id!)}}>
@@ -290,7 +289,7 @@ function Reply({reply}: {reply: IComment}) {
                 <CreatorAvatar creator={creator ?? {username: reply.username, handle: reply.handle}} size={10} />
                 <div>
                     <h3 className='font-bold'>{reply.username}</h3>
-                    <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(reply.comment)}} className="max-w-xl mb-2"></div>
+                    <div dangerouslySetInnerHTML={{__html: reply.comment}} className="max-w-xl mb-2"></div>
                 </div>
             </div>
         </div>

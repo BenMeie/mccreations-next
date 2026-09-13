@@ -14,7 +14,6 @@ import LexicalAutoLinkPlugin from './AutoLinkPlugin';
 import { AutoLinkNode, LinkNode } from '@lexical/link';
 import LinkPlugin from './LinkPlugin';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import DOMPurify from 'isomorphic-dompurify';
 import { ImageNode } from './nodes/ImageNode';
 import ImagesPlugin from './ImagePlugin';
 import {useTranslations} from 'next-intl';
@@ -101,7 +100,8 @@ function LoadHTMLPlugin({ html }: { html: string }): JSX.Element {
         try {
           if(html.length === 0) return;
           const parser = new DOMParser();
-          const dom = parser.parseFromString(DOMPurify.sanitize(html), "text/html");
+          // HTML sanitization is handled in the API
+          const dom = parser.parseFromString(html, "text/html");
           
           const nodes = $generateNodesFromDOM(editor, dom);
           
