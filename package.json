@@ -44,7 +44,6 @@
     "cmdk": "^1.1.1",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
-    "isomorphic-dompurify": "^2.26.0",
     "jsdom": "^26.1.0",
     "lexical": "^0.32.1",
     "lucide-react": "^0.488.0",
